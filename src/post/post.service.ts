@@ -20,6 +20,7 @@ export class PostService {
   }
 
   findAll() {
+
     return { posts: this.posts };
   }
 }
