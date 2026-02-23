@@ -1,8 +1,8 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
-import { PostModule } from './post/post.module';
+import { PostModule } from './app/post/post.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { PostEntity } from './post/post.entity';
+import { PostEntity } from './app/post/post.entity';
 
 @Module({
   imports: [

@@ -11,10 +11,13 @@ export class PostEntity {
   @PrimaryGeneratedColumn({ type: 'int' })
   id: number;
 
+  @Column()
+  userId: string;
+
   @Column({ type: 'varchar', nullable: false, length: 255 })
   title: string;
 
-  @Column({ type: 'varchar', nullable: false, length: 255 })
+  @Column({ type: 'text', nullable: false })
   content: string;
 
   @UpdateDateColumn({ type: 'timestamptz', default: () => 'CURRENT_TIMESTAMP' })

@@ -17,9 +17,14 @@
     "test:watch": "jest --watch",
     "test:cov": "jest --coverage",
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
-    "test:e2e": "jest --config ./test/jest-e2e.json"
+    "test:e2e": "jest --config ./test/jest-e2e.json",
+    "typeorm": "ts-node -r tsconfig-paths/register ./node_modules/typeorm/cli.js",
+    "migration:generate": "npm run typeorm -- migration:generate src/app/database/migrations/Migrations -d src/app/database/data-source.ts",
+    "migration:run": "npm run typeorm -- migration:run -d src/app/database/data-source.ts",
+    "migration:revert": "npm run typeorm -- migration:revert -d src/app/database/data-source.ts"
   },
   "dependencies": {
+    "@faker-js/faker": "^10.3.0",
     "@grpc/grpc-js": "^1.14.3",
     "@grpc/proto-loader": "^0.8.0",
     "@nestjs/common": "^11.0.1",

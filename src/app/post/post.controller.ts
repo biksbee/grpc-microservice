@@ -9,17 +9,17 @@ export class PostController {
   ) {}
 
   @GrpcMethod('PostService', 'CreatePost')
-  createPost(data: { title: string; content: string }) {
-    return this.postService.create(data.title, data.content);
+  async createPost(data: { userId: string, title: string; content: string }) {
+    return await this.postService.create(data.userId, data.title, data.content);
   }
 
   @GrpcMethod('PostService', 'FindOne')
-  findOne(data: { id: number }) {
-    return this.postService.findOne(data.id);
+  async findOne(data: { id: number }) {
+    return await this.postService.findOne(data.id);
   }
 
   @GrpcStreamMethod('PostService', 'FindAll')
-  findAll() {
-    return this.postService.findAll();
+  async findAll() {
+    return await this.postService.findAll();
   }
 }
