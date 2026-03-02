@@ -1,0 +1,8 @@
+scrape_configs:
+  - job_name: 'grpc-microservice',
+      static_config:
+        - targets: ['localhost:30110']
+
+  - job_name: 'gateway'
+    static_configs:
+      - targets: ['localhost:']

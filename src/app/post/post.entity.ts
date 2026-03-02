@@ -12,7 +12,7 @@ export class PostEntity {
   id: number;
 
   @Column()
-  userId: string;
+  userId: number;
 
   @Column({ type: 'varchar', nullable: false, length: 255 })
   title: string;
