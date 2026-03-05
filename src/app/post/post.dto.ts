@@ -24,7 +24,8 @@ export class CreatePostDto {
 }
 
 export class ListPostDto {
-  @ApiProperty({ example: 5, description: 'Author id' })
+  @ApiProperty({ example: 1, description: 'Post id'})
+  @Type(() => Number)
   @IsNumber()
   userId: number;
 }

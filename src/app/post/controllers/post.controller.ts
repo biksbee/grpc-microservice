@@ -16,32 +16,20 @@ export class PostController {
   async get(
     @Param() { id }: GetPostDto,
   ) {
-    const start = Date.now();
-    const post = await this.postService.get(id);
-    const duration = Date.now() - start;
-    console.log(`REST /posts/${id} processed in ${duration}ms`);
-    return post;
+    return await this.postService.get(id);
   }
 
   @Post()
   async create(
     @Body() dto: CreatePostDto,
   ) {
-    const start = Date.now();
-    const post = await this.postService.create(dto);
-    const duration = Date.now() - start;
-    this.logger.log(`Rest /posts processed in ${duration}ms`);
-    return post;
+    return await this.postService.create(dto);
   }
 
   @Get('list/:userId')
   async list(
     @Param() { userId }: ListPostDto,
   ) {
-    const start = Date.now();
-    const post = await this.postService.list(userId);
-    const duration = Date.now() - start;
-    console.log(`REST /posts/list/${userId} processed in ${duration}ms`);
-    return post;
+    return await this.postService.list(userId);
   }
 }

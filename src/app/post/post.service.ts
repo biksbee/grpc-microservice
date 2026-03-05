@@ -1,4 +1,4 @@
-import { Injectable, OnApplicationBootstrap } from '@nestjs/common';
+import { Injectable, Logger, OnApplicationBootstrap } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { PostEntity } from './post.entity';
@@ -10,6 +10,8 @@ import { CreatePostType } from './post.type';
 
 @Injectable()
 export class PostService implements OnApplicationBootstrap {
+  private readonly logger = new Logger(PostService.name);
+
   constructor(
     @InjectRepository(PostEntity)
     private readonly postRepository: Repository<PostEntity>,
@@ -50,8 +52,13 @@ export class PostService implements OnApplicationBootstrap {
   }
 
   async list(userId: number): Promise<PostListResponse> {
-    return {
-        posts: await this.postRepository.find({ where: { userId }, take: 2 })
-    }
+    const start = Date.now();
+    const posts = await this.postRepository.find({
+      where: { userId },
+      take: 200
+    });
+    const duration = Date.now() - start;
+    this.logger.log(`DB query took ${duration}ms`);
+    return { posts };
   }
 }

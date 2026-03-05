@@ -19,11 +19,7 @@ export class GrpcController {
 
   @GrpcMethod('PostService', 'GetPost')
   async getPost(data: GetPostDto) {
-    const start = Date.now();
-    const post = await this.postService.get(data.id);
-    const duration = Date.now() - start;
-    this.logger.log(`gRPC GetPost processed in ${duration}ms`);
-    return post;
+    return await this.postService.get(data.id);
   }
 
   @GrpcMethod('PostService', 'ListPost')
